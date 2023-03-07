@@ -17,13 +17,35 @@ function App() {
   }
 
   function move() {
-    game.player.move();
+    game.player.move(game.board);
     update();
+  }
+
+  function changeDirection({ key }: KeyboardEvent) {
+    game.player.changeDirection(key);
   }
 
   useEffect(() => {
     restart();
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      move();
+    }, 100);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [game]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", changeDirection);
+
+    return () => {
+      window.removeEventListener("keydown", changeDirection);
+    };
+  }, [game]);
 
   return (
     <div className="w-screen h-screen center bg-gray-800" onClick={move}>
