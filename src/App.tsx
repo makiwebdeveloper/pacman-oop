@@ -4,10 +4,14 @@ import { Game } from "./models/Game";
 import { Directions, Player } from "./models/Player";
 
 function App() {
-  const [game, setGame] = useState(new Game(new Player(1, 1, Directions.LEFT)));
+  const [game, setGame] = useState(
+    new Game(new Player(3, 1, Directions.RIGHT))
+  );
+
+  console.log("render");
 
   const restart = () => {
-    const newGame = new Game(new Player(1, 1, Directions.RIGHT));
+    const newGame = new Game(new Player(3, 1, Directions.RIGHT));
     newGame.initBoard();
     setGame(newGame);
   };
@@ -17,19 +21,40 @@ function App() {
     setGame(newGame);
   };
 
-  const moveHandler = () => {
+  const move = () => {
     game.player.move(game.board);
     updateGame();
   };
+
+  const changeDirection = ({ key }: KeyboardEvent) => {
+    game.player.changeDirection(key);
+    updateGame();
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      move();
+    }, 100);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [game]);
 
   useEffect(() => {
     restart();
   }, []);
 
-  console.log(game);
+  useEffect(() => {
+    window.addEventListener("keydown", changeDirection);
+
+    return () => {
+      window.removeEventListener("keydown", changeDirection);
+    };
+  }, [game]);
 
   return (
-    <div className="w-screen h-screen center" onClick={moveHandler}>
+    <div className="w-screen h-screen center">
       <BoardComponent board={game.board} player={game.player} />
     </div>
   );
