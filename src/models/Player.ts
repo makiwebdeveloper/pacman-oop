@@ -11,4 +11,8 @@ export class Player {
     public y: number,
     public direction: Directions
   ) {}
+
+  public move() {
+    this.x += 1;
+  }
 }
