@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Game } from "./models/Game";
+import { BoardComponent } from "./components";
+import { Game } from "./models";
 
 function App() {
   const [game, setGame] = useState(new Game());
@@ -9,16 +10,16 @@ function App() {
     newGame.board.initBoard();
     setGame(newGame);
   };
-  
-  console.log(game)
+
+  console.log(game);
 
   useEffect(() => {
     restart();
   }, []);
 
   return (
-    <div className="App">
-      <h1>Pacman</h1>
+    <div className="w-screen h-screen center bg-gray-800">
+      <BoardComponent board={game.board} player={game.player} />
     </div>
   );
 }
