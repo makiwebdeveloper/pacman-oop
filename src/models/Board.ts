@@ -9,4 +9,10 @@ export class Board {
       row.map((item, x) => new Cell(x, y, null, item === "#", item === "*"))
     );
   }
+
+  public removeApple(x: number, y: number) {
+    this.cells[y][x].hasApple = false;
+  }
+  
+ 
 }

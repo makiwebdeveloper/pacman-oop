@@ -16,7 +16,11 @@ const CellComponent: FC<Props> = ({ cell, player }) => {
           "bg-blue-600": cell.isWall,
         }
       )}`}
-    ></div>
+    >
+      {cell.hasApple && (
+        <div className="w-[3px] h-[3px] sm:w-[5px] sm:h-[5px] bg-yellow-300 rounded-full"></div>
+      )}
+    </div>
   );
 };
 

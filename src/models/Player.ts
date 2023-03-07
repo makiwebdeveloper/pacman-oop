@@ -1,4 +1,5 @@
 import { Board } from "./Board";
+import { Game } from "./Game";
 
 export enum Directions {
   UP = "up",
@@ -36,6 +37,13 @@ export class Player {
         }
         if (!board.cells[this.y][this.x + 1].isWall) this.x += 1;
         break;
+    }
+  }
+
+  public eat(game: Game) {
+    if (game.board.cells[this.y][this.x].hasApple) {
+      game.board.removeApple(this.x, this.y);
+      game.addCount();
     }
   }
 

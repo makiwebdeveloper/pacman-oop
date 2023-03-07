@@ -6,6 +6,6 @@ export class Cell {
     readonly y: number,
     public player: Player | null,
     readonly isWall: boolean,
-    readonly hasApple: boolean
+    public hasApple: boolean
   ) {}
 }

@@ -17,12 +17,16 @@ function App() {
   }
 
   function move() {
-    game.player.move(game.board);
+    if (game.board.cells) {
+      game.player.move(game.board);
+      game.player.eat(game);
+    }
     update();
   }
 
   function changeDirection({ key }: KeyboardEvent) {
     game.player.changeDirection(key);
+    update();
   }
 
   useEffect(() => {
@@ -49,6 +53,9 @@ function App() {
 
   return (
     <div className="w-screen h-screen center bg-gray-800" onClick={move}>
+      <div className="absolute top-10 left-10 w-8 h-8 rounded-full center bg-white text-gray-800 font-semibold">
+        {game.count}
+      </div>
       <BoardComponent board={game.board} player={game.player} />
     </div>
   );
