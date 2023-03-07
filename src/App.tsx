@@ -4,15 +4,12 @@ import { Game } from "./models/Game";
 import { Directions, Player } from "./models/Player";
 
 function App() {
-  const [game, setGame] = useState(
-    new Game(new Player(3, 1, Directions.RIGHT))
-  );
-
-  console.log("render");
+  const [game, setGame] = useState(new Game(new Player(1, 1, Directions.UP)));
 
   const restart = () => {
-    const newGame = new Game(new Player(3, 1, Directions.RIGHT));
+    const newGame = new Game(new Player(1, 1, Directions.UP));
     newGame.initBoard();
+    console.log(newGame);
     setGame(newGame);
   };
 
@@ -54,7 +51,7 @@ function App() {
   }, [game]);
 
   return (
-    <div className="w-screen h-screen center">
+    <div className="w-screen h-screen center bg-gray-800">
       <BoardComponent board={game.board} player={game.player} />
     </div>
   );
