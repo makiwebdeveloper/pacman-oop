@@ -24,22 +24,18 @@ export class Player {
         break;
       case Directions.LEFT:
         if (!board[this.y][this.x - 1]) {
-          this.x = board[this.y][board[this.y].length - 1].x;
+          this.x = board[this.y].length;
           break;
         }
-        if (!board[this.y][this.x - 1].isWall) {
-          this.x -= 1;
-          break;
-        }
+        if (!board[this.y][this.x - 1].isWall) this.x -= 1;
+        break;
       case Directions.RIGHT:
         if (!board[this.y][this.x + 1]) {
           this.x = 0;
           break;
         }
-        if (!board[this.y][this.x + 1].isWall) {
-          this.x += 1;
-          break;
-        }
+        if (!board[this.y][this.x + 1].isWall) this.x += 1;
+        break;
     }
   }
 
