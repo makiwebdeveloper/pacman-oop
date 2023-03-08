@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BoardComponent } from "./components";
+import { BoardComponent, GameOverComponent } from "./components";
 import { Game } from "./models";
 
 function App() {
@@ -15,10 +15,9 @@ function App() {
     const copiedGame = game.copyGame();
     setGame(copiedGame);
   }
-  
-  function changeDirection({key}: KeyboardEvent) {
-     game.player.changeDirection(key)
-     
+
+  function changeDirection({ key }: KeyboardEvent) {
+    game.player.changeDirection(key);
   }
 
   useEffect(() => {
@@ -41,18 +40,18 @@ function App() {
       clearInterval(interval);
     };
   }, [game]);
-  
+
   useEffect(() => {
     window.addEventListener("keydown", changeDirection);
-
     return () => {
       window.removeEventListener("keydown", changeDirection);
     };
   }, [game]);
 
   return (
-    <div className="bg-gray-800 w-screen h-screen center">
+    <div className={`bg-gray-800 w-screen h-screen center`}>
       <BoardComponent game={game} />
+      {game.isGameOver && <GameOverComponent restart={restart} />}
     </div>
   );
 }
