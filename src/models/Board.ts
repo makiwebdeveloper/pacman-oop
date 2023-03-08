@@ -13,7 +13,7 @@ export class Board {
             x,
             y,
             null,
-            item === BoardNames.EMPTY,
+            item === BoardNames.WALL,
             item === BoardNames.APPLE
           )
       )

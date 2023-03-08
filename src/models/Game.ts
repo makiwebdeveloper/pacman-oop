@@ -1,5 +1,5 @@
 import { Board } from "./Board";
-import { Directions } from "./Directions";
+import { Directions } from "./enums/Directions";
 import { Ghost } from "./Ghost";
 import { Player } from "./Player";
 
