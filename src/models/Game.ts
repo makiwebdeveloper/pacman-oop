@@ -7,6 +7,14 @@ export class Game {
   count: number = 0;
   isGameOver: boolean = false;
 
+  public play() {
+    if (!this.isGameOver) {
+      this.player.move(this.board);
+      this.player.eat(this);
+      this.checkGameOver();
+    }
+  }
+
   public getCopy(): Game {
     const newGame = new Game();
     newGame.board = this.board;

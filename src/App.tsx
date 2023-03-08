@@ -5,6 +5,8 @@ import { Game } from "./models";
 function App() {
   const [game, setGame] = useState(new Game());
 
+  console.log("rerender");
+
   function restart() {
     const newGame = new Game();
     newGame.board.initBoard();
@@ -14,15 +16,6 @@ function App() {
   function update() {
     const copiedGame = game.getCopy();
     setGame(copiedGame);
-  }
-
-  function move() {
-    if (game.board.cells) {
-      game.player.move(game.board);
-      game.player.eat(game);
-      game.checkGameOver();
-    }
-    update();
   }
 
   function changeDirection({ key }: KeyboardEvent) {
@@ -36,8 +29,15 @@ function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      move();
+      if (game.board.cells) {
+        game.play();
+      }
+      update();
     }, 100);
+
+    if (game.isGameOver) {
+      clearInterval(interval);
+    }
 
     return () => {
       clearInterval(interval);
@@ -53,14 +53,22 @@ function App() {
   }, [game]);
 
   return (
-    <div className="w-screen h-screen center bg-gray-800" onClick={move}>
+    <div className="w-screen h-screen center bg-gray-800">
       <div className="absolute top-5 left-5 w-10 h-10 rounded-full center bg-white text-gray-800 font-semibold">
         {game.count}
       </div>
 
       {game.isGameOver && (
-        <div className="absolute left-[50%] translate-x-[-50%] text-gray-800 bottom-5 font-semibold bg-white bg-opacity-50 px-2 py-1 rounded-md ">
-          Game Over
+        <div className="absolute left-[50%] translate-x-[-50%] bottom-5 flex gap-2">
+          <p className="text-gray-800 font-semibold bg-white px-2 py-1 rounded-md">
+            Game Over
+          </p>
+          <button
+            onClick={restart}
+            className="bg-yellow-300 px-2 py-1 rounded-md text-gray-800 font-semibold"
+          >
+            Restart
+          </button>
         </div>
       )}
       <BoardComponent board={game.board} player={game.player} />
