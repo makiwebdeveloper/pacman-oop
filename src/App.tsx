@@ -53,6 +53,13 @@ function App() {
 
   return (
     <div className={`bg-gray-800 w-screen h-screen center`}>
+      <div
+        className={`absolute top-5 left-5 rounded-full bg-white w-10 h-10 center font-semibold ${
+          game.isGameOver && "bg-opacity-50"
+        }`}
+      >
+        {game.score}
+      </div>
       <BoardComponent game={game} />
       {game.isGameOver && <GameOverComponent restart={restart} />}
     </div>

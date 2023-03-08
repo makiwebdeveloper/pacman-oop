@@ -10,7 +10,7 @@ const BoardComponent: FC<Props> = ({ game }) => {
   return (
     <div
       className={`w-[210px] h-[230px] sm:w-[420px] sm:h-[460px] ${
-        game.isGameOver ? "opacity-50" : ""
+        game.isGameOver && "opacity-50"
       }`}
     >
       {game.board.cells.map((row, rowIndex) => (
