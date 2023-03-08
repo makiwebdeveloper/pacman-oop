@@ -14,6 +14,9 @@ export class Game {
     if (!this.isGameOver) {
       this.player.move(this.board);
       this.player.eat(this);
+      this.ghosts.forEach((ghost) => {
+        ghost.move(this.board);
+      });
       this.checkGameOver();
     }
   }
@@ -24,6 +27,7 @@ export class Game {
     newGame.player = this.player;
     newGame.score = this.score;
     newGame.isGameOver = this.isGameOver;
+    newGame.ghosts = this.ghosts;
     return newGame;
   }
 
@@ -35,5 +39,9 @@ export class Game {
     if (!this.board.hasApples()) {
       this.isGameOver = true;
     }
+  }
+
+  public addGhosts(ghosts: Ghost[]) {
+    this.ghosts = ghosts;
   }
 }

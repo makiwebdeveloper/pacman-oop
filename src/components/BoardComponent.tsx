@@ -16,7 +16,12 @@ const BoardComponent: FC<Props> = ({ game }) => {
       {game.board.cells.map((row, rowIndex) => (
         <div key={rowIndex} className="flex">
           {row.map((cell, colIndex) => (
-            <CellComponent key={colIndex} cell={cell} player={game.player} />
+            <CellComponent
+              key={colIndex}
+              cell={cell}
+              player={game.player}
+              ghosts={game.ghosts}
+            />
           ))}
         </div>
       ))}

@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { BoardComponent, GameOverComponent } from "./components";
-import { Game } from "./models";
+import { Game, Ghost } from "./models";
 
 function App() {
   const [game, setGame] = useState(new Game());
 
+  console.log(game);
+
   function restart() {
     const newGame = new Game();
     newGame.board.initBoard();
+    newGame.addGhosts([new Ghost(1, 17), new Ghost(10, 17), new Ghost(19, 17)]);
     setGame(newGame);
   }
 
