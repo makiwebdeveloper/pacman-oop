@@ -71,7 +71,7 @@ function App() {
           </button>
         </div>
       )}
-      <BoardComponent board={game.board} player={game.player} />
+      <BoardComponent game={game} />
     </div>
   );
 }

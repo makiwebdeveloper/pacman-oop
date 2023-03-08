@@ -1,4 +1,5 @@
 import { Board } from "./Board";
+import { Ghost } from "./Ghost";
 import { Directions, Player } from "./Player";
 
 export class Game {
@@ -6,10 +7,12 @@ export class Game {
   board: Board = new Board();
   count: number = 0;
   isGameOver: boolean = false;
+  ghost: Ghost = new Ghost(1, 21, Directions.UP);
 
   public play() {
     if (!this.isGameOver) {
       this.player.move(this.board);
+      this.ghost.move(this.board);
       this.player.eat(this);
       this.checkGameOver();
     }
@@ -21,6 +24,7 @@ export class Game {
     newGame.player = this.player;
     newGame.count = this.count;
     newGame.isGameOver = this.isGameOver;
+    newGame.ghost = this.ghost;
     return newGame;
   }
 
