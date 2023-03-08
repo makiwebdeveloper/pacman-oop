@@ -13,6 +13,17 @@ export class Board {
   public removeApple(x: number, y: number) {
     this.cells[y][x].hasApple = false;
   }
-  
- 
+
+  public hasApples(): boolean {
+    let withApples: Cell[] = [];
+    this.cells.forEach((row) => {
+      withApples = [...withApples, ...row.filter((i) => i.hasApple)];
+    });
+
+    if (withApples.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

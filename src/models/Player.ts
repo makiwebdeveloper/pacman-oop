@@ -25,7 +25,7 @@ export class Player {
         break;
       case Directions.LEFT:
         if (!board.cells[this.y][this.x - 1]) {
-          this.x = board.cells[this.y].length;
+          this.x = board.cells[this.y].length - 1;
           break;
         }
         if (!board.cells[this.y][this.x - 1].isWall) this.x -= 1;
