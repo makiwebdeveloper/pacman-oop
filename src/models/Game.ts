@@ -14,6 +14,7 @@ export class Game {
     if (!this.isGameOver) {
       this.player.move(this.board);
       this.player.eat(this);
+      this.checkGameOver();
     }
   }
 
@@ -28,5 +29,11 @@ export class Game {
 
   public addScore() {
     this.score += 1;
+  }
+
+  public checkGameOver() {
+    if (!this.board.hasApples()) {
+      this.isGameOver = true;
+    }
   }
 }
