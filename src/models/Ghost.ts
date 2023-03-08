@@ -1,4 +1,4 @@
-import { Directions } from "./Directions";
+import { Directions } from "./enums/Directions";
 
 export class Ghost {
   constructor(

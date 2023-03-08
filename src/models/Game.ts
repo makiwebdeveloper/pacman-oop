@@ -9,4 +9,9 @@ export class Game {
   ghosts: Ghost[] = [];
   score: number = 0;
   isGameOver: boolean = false;
+
+  public play() {
+    if (!this.isGameOver) {
+    }
+  }
 }
