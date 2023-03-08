@@ -12,6 +12,16 @@ export class Game {
 
   public play() {
     if (!this.isGameOver) {
+      this.player.move(this.board);
     }
+  }
+
+  public copyGame(): Game {
+    const newGame = new Game();
+    newGame.board = this.board;
+    newGame.player = this.player;
+    newGame.score = this.score;
+    newGame.isGameOver = this.isGameOver;
+    return newGame;
   }
 }
