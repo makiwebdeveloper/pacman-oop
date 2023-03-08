@@ -13,6 +13,7 @@ export class Game {
   public play() {
     if (!this.isGameOver) {
       this.player.move(this.board);
+      this.player.eat(this);
     }
   }
 
@@ -23,5 +24,9 @@ export class Game {
     newGame.score = this.score;
     newGame.isGameOver = this.isGameOver;
     return newGame;
+  }
+
+  public addScore() {
+    this.score += 1;
   }
 }

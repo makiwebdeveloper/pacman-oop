@@ -1,5 +1,6 @@
 import { Board } from "./Board";
 import { Directions } from "./enums/Directions";
+import { Game } from "./Game";
 
 export class Player {
   constructor(
@@ -47,6 +48,13 @@ export class Player {
       case "ArrowRight":
         this.direction = Directions.RIGHT;
         break;
+    }
+  }
+
+  public eat(game: Game) {
+    if (game.board.cells[this.y][this.x].hasApple) {
+      game.board.removeApple(this.x, this.y);
+      game.addScore();
     }
   }
 }

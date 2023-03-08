@@ -19,4 +19,8 @@ export class Board {
       )
     );
   }
+
+  public removeApple(x: number, y: number) {
+    this.cells[y][x].hasApple = false;
+  }
 }
