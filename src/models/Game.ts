@@ -39,6 +39,13 @@ export class Game {
     if (!this.board.hasApples()) {
       this.isGameOver = true;
     }
+    if (
+      this.ghosts.find(
+        (ghost) => ghost.x === this.player.x && ghost.y === this.player.y
+      )
+    ) {
+      this.isGameOver = true;
+    }
   }
 
   public addGhosts(ghosts: Ghost[]) {
