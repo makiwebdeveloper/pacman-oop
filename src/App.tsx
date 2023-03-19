@@ -53,13 +53,13 @@ function App() {
     <div className={`bg-gray-800 w-screen h-screen center`}>
       <div
         className={`absolute top-5 left-5 sm:top-10 sm:left-10 md:left-20 rounded-full bg-white w-8 h-8 center font-semibold ${
-          (game.isGameOver) && "bg-opacity-50"
+          game.isGameOver && "bg-opacity-50"
         }`}
       >
         {game.score}
       </div>
       <BoardComponent game={game} />
-      {(game.isGameOver) && (
+      {game.isGameOver && (
         <GameOverComponent
           isGameOver={game.isGameOver}
           hasApples={game.board.hasApples()}

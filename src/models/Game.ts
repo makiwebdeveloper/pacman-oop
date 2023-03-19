@@ -36,12 +36,38 @@ export class Game {
   }
 
   public checkGameOver() {
-    if (!this.board.hasApples()) {
-      this.isGameOver = true;
-    }
     if (
+      !this.board.hasApples() ||
       this.ghosts.find(
         (ghost) => ghost.x === this.player.x && ghost.y === this.player.y
+      ) ||
+      this.ghosts.find(
+        (ghost) =>
+          ghost.x === this.player.x &&
+          ghost.y === this.player.y + 1 &&
+          ghost.direction === Directions.UP &&
+          this.player.direction !== Directions.UP
+      ) ||
+      this.ghosts.find(
+        (ghost) =>
+          ghost.x === this.player.x &&
+          ghost.y === this.player.y - 1 &&
+          ghost.direction === Directions.DOWN &&
+          this.player.direction !== Directions.DOWN
+      ) ||
+      this.ghosts.find(
+        (ghost) =>
+          ghost.x === this.player.x - 1 &&
+          ghost.y === this.player.y &&
+          ghost.direction === Directions.RIGHT &&
+          this.player.direction !== Directions.RIGHT
+      ) ||
+      this.ghosts.find(
+        (ghost) =>
+          ghost.x === this.player.x + 1 &&
+          ghost.y === this.player.y &&
+          ghost.direction === Directions.LEFT &&
+          this.player.direction !== Directions.LEFT
       )
     ) {
       this.isGameOver = true;
