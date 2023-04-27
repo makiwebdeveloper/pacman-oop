@@ -7,3 +7,6 @@ React.js, Tailwindcss, Typescript
 
 Image example: 
 ![pacman_example](https://user-images.githubusercontent.com/116589989/226208803-3ebca963-eb33-4ef9-9451-6e29f35e299d.png)
+
+## Link
+[You can try this game here](https://pacman-oop.netlify.app)
